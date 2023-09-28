@@ -9,3 +9,12 @@
 - name: App prequisties
   ansible.builtin.import_tasks:
     file: app_presetup.yml
+
+- name: Load NodeJS dependencies
+  ansible.builtin.shell: npm install
+  args:
+    chdir: /app
+
+- name: systemd setup
+  ansible.builtin.import_tasks:
+    file: systemd_setup.yml
