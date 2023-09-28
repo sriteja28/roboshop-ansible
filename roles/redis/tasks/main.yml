@@ -12,14 +12,20 @@
     name: redis
     state: installed
 
-- name: Redis db listener address
+- name: Redis db listener address /etc/redis.conf
   ansible.builtin.replace:
     path: /etc/redis.conf
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
 
-- name: Redis db listener address
+- name: Redis db listener address /etc/redis/redis.conf
   ansible.builtin.replace:
     path: /etc/redis/redis.conf
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
+
+- name: Start Redis service
+  ansible.builtin.systemd:
+    name: redis
+    state: restarted
+    enabled: true
