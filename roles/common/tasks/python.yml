@@ -6,15 +6,15 @@
       - python3-devel
     state: installed
 
-- name: App prequisties
+- name: App Pre-requisites
   ansible.builtin.import_tasks:
     file: app_presetup.yml
 
-- name: Download python depencdecies
+- name: Install Python Dependencies
   ansible.builtin.shell: pip3.6 install -r requirements.txt
   args:
     chdir: /app
 
-- name: systemd setup
+- name: SystemD Setup
   ansible.builtin.import_tasks:
     file: systemd_setup.yml
