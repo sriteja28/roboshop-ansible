@@ -5,3 +5,7 @@
   ansible.builtin.yum:
     name: nodejs
     state: installed
+
+- name: App prequisties
+  ansible.builtin.import_tasks:
+    file: app_presetup.yml
