@@ -4,7 +4,22 @@
     state: installed
     disable_gpg_check: true
 
+- name: Enable Redis 6 version
+  ansible.builtin.shell: yum module enable redis:remi-6.2 -y
+
 - name: Install Redis
   ansible.builtin.dnf:
-    name: '@redis:6.2'
+    name: redis
     state: installed
+
+- name: Redis db listener address
+  ansible.builtin.replace:
+    path: /etc/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: Redis db listener address
+  ansible.builtin.replace:
+    path: /etc/redis/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
