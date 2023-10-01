@@ -26,4 +26,9 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-      - targets: ["localhost:9090","172.31.22.84:9100"]
+      - targets: ["localhost:9090"]
+
+  - job_name: ec2
+    ec2_sd_configs:
+      - region: eu-east-1
+        port: 9100
